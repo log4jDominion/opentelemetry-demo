@@ -52,6 +52,7 @@ jobs:
           IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep "^sbhardw7")
           for IMAGE in $IMAGES; do
             echo "Pushing $IMAGE..."
+            docker push $IMAGE || { echo "Failed to push $IMAGE"; exit 1; }
           done
           echo "All images pushed successfully!"
         env: 
