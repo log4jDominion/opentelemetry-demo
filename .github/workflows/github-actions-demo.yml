@@ -24,13 +24,12 @@ jobs:
       # Step 3: Set up Docker Compose
       - name: Set up Docker Compose
         run: |
-          sudo -i
-          apt update && apt upgrade -y
-          apt install docker.io -y
-          mkdir -p ~/.docker/cli-plugins/
-          curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-          chmod +x ~/.docker/cli-plugins/docker-compose
-          docker compose version
+          sudo apt update && sudo apt upgrade -y
+          sudo apt install docker.io -y
+          sudo mkdir -p ~/.docker/cli-plugins/
+          sudo curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
+          sudo chmod +x ~/.docker/cli-plugins/docker-compose
+          sudo docker compose version
 
       # Step 4: Build the images using Docker Compose
       - name: Docker Compose Build
