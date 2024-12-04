@@ -49,7 +49,7 @@ jobs:
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: | 
-          IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}")
+          IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep "^sbhardw7")
           for IMAGE in $IMAGES; do
             echo "Pushing $IMAGE..."
           done
