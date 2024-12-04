@@ -38,7 +38,7 @@ jobs:
 
       # Step 4: Build the images using Docker Compose
       - name: Docker Compose Build
-        run: sudo docker compose build
+        run: sudo DEMO_VERSION=$DEMO_VERSION docker compose build
         env: 
           DEMO_VERSION: latest-release
 
