@@ -44,12 +44,12 @@ jobs:
 
       # Step 4: Print displayed images
       - name: Docker Compose list
-        run: sudo docker images --filter=reference='sbhardw7/*'
+        run: sudo docker images -a
 
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: | 
-          IMAGES=$(docker images --filter=reference='sbhardw7/*')
+          IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep "^docker.io/sbhardw7")
           for IMAGE in $IMAGES; do
             echo "Pushing $IMAGE..."
           done
