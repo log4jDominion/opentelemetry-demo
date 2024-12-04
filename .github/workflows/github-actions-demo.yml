@@ -31,9 +31,7 @@ jobs:
 
       # Step 4: Build the images using Docker Compose
       - name: Docker Compose Build
-        run: | 
-          sudo docker compose build
-          sudo docker compose push
+        run: sudo docker compose build
 
       # Step 4: Print displayed images
       - name: Docker Compose list
