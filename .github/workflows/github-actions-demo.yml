@@ -24,8 +24,6 @@ jobs:
       # Step 3: Set up Docker Compose
       - name: Set up Docker Compose
         run: |
-          sudo apt update
-          sudo apt upgrade -y
           sudo apt install docker.io -y
           sudo mkdir -p ~/.docker/cli-plugins/
           sudo curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
