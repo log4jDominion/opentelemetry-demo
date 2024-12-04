@@ -19,7 +19,7 @@ services:
   # ******************
   # Accounting service
   accountingservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice
+    image: ${IMAGE_NAME}:${ env.DEMO_VERSION }-accountingservice
     container_name: accounting-service
     build:
       context: ./
