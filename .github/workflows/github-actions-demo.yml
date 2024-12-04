@@ -33,6 +33,10 @@ jobs:
       - name: Docker Compose Build
         run: sudo docker compose build
 
-      # Step 5: Push the images using Docker Compose
+      # Step 4: Print displayed images
+      - name: Docker Compose list
+        run: sudo docker images -a
+
+      # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: sudo docker compose push
