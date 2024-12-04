@@ -48,6 +48,6 @@ jobs:
 
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
-        run: sudo DEMO_VERSION=$DEMO_VERSION docker compose push
+        run: docker push docker.io/sbhardw7/open-telemetry:$DEMO_VERSION-accountingservice
         env: 
           DEMO_VERSION: latest-release
