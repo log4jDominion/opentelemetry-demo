@@ -50,6 +50,10 @@ jobs:
       - name: Docker Compose Push
         run: | 
           IMAGES=$(docker images --filter=reference='sbhardw7/*')
+          for IMAGE in $IMAGES; do
+            echo "Pushing $IMAGE..."
+            docker push $IMAGE || { echo "Failed to push $IMAGE"; exit 1; }
+          done
           echo "All images pushed successfully!"
         env: 
           DEMO_VERSION: latest-release
