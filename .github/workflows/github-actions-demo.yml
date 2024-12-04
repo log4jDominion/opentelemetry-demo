@@ -48,6 +48,14 @@ jobs:
 
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
-        run: docker push docker.io/sbhardw7/open-telemetry:$DEMO_VERSION-accountingservice
+        run: | 
+          IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep "^docker.io/sbhardw7")
+
+          for IMAGE in $IMAGES; do
+            echo "Pushing $IMAGE..."
+            docker push $IMAGE || { echo "Failed to push $IMAGE"; exit 1; }
+          done
+
+          echo "All images pushed successfully!"
         env: 
           DEMO_VERSION: latest-release
