@@ -19,7 +19,7 @@ services:
   # ******************
   # Accounting service
   accountingservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-accountingservice
+    image: ${IMAGE_NAME}/accountingservice:${DEMO_VERSION}
     container_name: accounting-service
     build:
       context: ./
@@ -46,7 +46,7 @@ services:
 
   # AdService
   adservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-adservice
+    image: ${IMAGE_NAME}/adservice:${DEMO_VERSION}
     container_name: ad-service
     build:
       context: ./
@@ -80,7 +80,7 @@ services:
 
   # Cart service
   cartservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-cartservice
+    image: ${IMAGE_NAME}/cartservice:${DEMO_VERSION}
     container_name: cart-service
     build:
       context: ./
@@ -114,7 +114,7 @@ services:
 
   # Checkout service
   checkoutservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-checkoutservice
+    image: ${IMAGE_NAME}/checkoutservice:${DEMO_VERSION}
     container_name: checkout-service
     build:
       context: ./
@@ -166,7 +166,7 @@ services:
 
   # Currency service
   currencyservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-currencyservice
+    image: ${IMAGE_NAME}/currencyservice:${DEMO_VERSION}
     container_name: currency-service
     build:
       context: ./
@@ -194,7 +194,7 @@ services:
 
   # Email service
   emailservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-emailservice
+    image: ${IMAGE_NAME}/emailservice:${DEMO_VERSION}
     container_name: email-service
     build:
       context: ./
@@ -221,7 +221,7 @@ services:
 
   # Fraud Detection service
   frauddetectionservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-frauddetectionservice
+    image: ${IMAGE_NAME}/frauddetectionservice:${DEMO_VERSION}
     container_name: frauddetection-service
     build:
       context: ./
@@ -254,7 +254,7 @@ services:
 
   # Frontend
   frontend:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-frontend
+    image: ${IMAGE_NAME}/frontend:${DEMO_VERSION}
     container_name: frontend
     build:
       context: ./
@@ -315,7 +315,7 @@ services:
 
   # Frontend Proxy (Envoy)
   frontendproxy:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-frontendproxy
+    image: ${IMAGE_NAME}/frontendproxy:${DEMO_VERSION}
     container_name: frontend-proxy
     build:
       context: ./
@@ -363,7 +363,7 @@ services:
 
   # Imageprovider
   imageprovider:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-imageprovider
+    image: ${IMAGE_NAME}/imageprovider:${DEMO_VERSION}
     container_name: imageprovider
     build:
       context: ./
@@ -390,7 +390,7 @@ services:
 
   # Load Generator
   loadgenerator:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-loadgenerator
+    image: ${IMAGE_NAME}/loadgenerator:${DEMO_VERSION}
     container_name: load-generator
     build:
       context: ./
@@ -428,7 +428,7 @@ services:
 
   # Payment service
   paymentservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-paymentservice
+    image: ${IMAGE_NAME}/paymentservice:${DEMO_VERSION}
     container_name: payment-service
     build:
       context: ./
@@ -459,7 +459,7 @@ services:
 
   # Product Catalog service
   productcatalogservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-productcatalogservice
+    image: ${IMAGE_NAME}/productcatalogservice:${DEMO_VERSION}
     container_name: product-catalog-service
     build:
       context: ./
@@ -490,7 +490,7 @@ services:
 
   # Quote service
   quoteservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-quoteservice
+    image: ${IMAGE_NAME}/quoteservice:${DEMO_VERSION}
     container_name: quote-service
     build:
       context: ./
@@ -518,7 +518,7 @@ services:
 
   # Recommendation service
   recommendationservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-recommendationservice
+    image: ${IMAGE_NAME}/recommendationservice:${DEMO_VERSION}
     container_name: recommendation-service
     build:
       context: ./
@@ -554,7 +554,7 @@ services:
 
   # Shipping service
   shippingservice:
-    image: ${IMAGE_NAME}:${DEMO_VERSION}-shippingservice
+    image: ${IMAGE_NAME}/shippingservice:${DEMO_VERSION}
     container_name: shipping-service
     build:
       context: ./
