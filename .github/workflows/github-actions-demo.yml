@@ -44,4 +44,4 @@ jobs:
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: | 
-          sudo docker compose push
+          sudo docker push $IMAGE_NAME:$DEMO_VERSION-accountingservice
