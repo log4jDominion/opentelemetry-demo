@@ -6,7 +6,7 @@ on:
       - dev  # Adjust to the branch you want to trigger the workflow
 
 env:
-  IMAGE_NAME: sbhardw7/open-telemetry
+  IMAGE_NAME: sbhardw7/open-telemetry/dev
   DEMO_VERSION: dev
 
 jobs:
