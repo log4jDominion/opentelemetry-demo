@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        steps: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,flagd,frauddetectionservice,frontend,frontendproxy,grafana,imageprovider,jaeger,kafka,loadgenerator,otelcol,paymentservice,productcatalogservice,prometheus-server,quoteservice,recommendationservice,shippingservice,valkey]
+        step: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,flagd,frauddetectionservice,frontend,frontendproxy,grafana,imageprovider,jaeger,kafka,loadgenerator,otelcol,paymentservice,productcatalogservice,prometheus-server,quoteservice,recommendationservice,shippingservice,valkey]
 
     steps:
       - name: Checkout repository
@@ -34,7 +34,7 @@ jobs:
     if: failure()
     strategy:
       matrix:
-        steps: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,flagd,frauddetectionservice,frontend,frontendproxy,grafana,imageprovider,jaeger,kafka,loadgenerator,otelcol,paymentservice,productcatalogservice,prometheus-server,quoteservice,recommendationservice,shippingservice,valkey]
+        step: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,flagd,frauddetectionservice,frontend,frontendproxy,grafana,imageprovider,jaeger,kafka,loadgenerator,otelcol,paymentservice,productcatalogservice,prometheus-server,quoteservice,recommendationservice,shippingservice,valkey]
 
     
     steps:
