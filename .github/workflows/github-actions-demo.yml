@@ -11,9 +11,6 @@ env:
   MAIN_VERSION: main
 
 jobs:
-  # run_checks:
-  #   uses: ./.github/workflows/checks.yml
-
   build-and-push:
     needs: run_checks
     runs-on: ubuntu-latest
