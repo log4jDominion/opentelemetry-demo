@@ -24,13 +24,10 @@ jobs:
       # Step 3: Set up Docker Compose
       - name: Set up Docker Compose
         run: |
-          echo "This is env var : $DEMO_VERSION"
           sudo mkdir -p ~/.docker/cli-plugins/
           sudo curl -SL https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
           sudo chmod +x ~/.docker/cli-plugins/docker-compose
           sudo docker compose version
-        env: 
-          DEMO_VERSION: latest-release
 
       # Step 4: Build the images using Docker Compose
       - name: Docker Compose Build
