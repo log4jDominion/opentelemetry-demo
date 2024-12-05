@@ -16,14 +16,15 @@ jobs:
 
     steps:
       # Step 1: Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 1: Build Images
       - name: Build images
         uses: ./.github/workflows/component-build-images.yml
         with:
           push: false
           version: 'dev'
-      # # Step 1: Checkout the code
-      # - name: Checkout repository
-      #   uses: actions/checkout@v3
 
       # # Step 2: Run integration tests
       # # - name: run tracetesting
