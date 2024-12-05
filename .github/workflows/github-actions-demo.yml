@@ -11,16 +11,16 @@ env:
   MAIN_VERSION: main
 
 jobs:
-  build_images:
-    uses: ./.github/workflows/component-build-images.yml
-    with:
-      push: false
-      version: 'dev'
-
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
+      - name: Build images
+        uses: ./.github/workflows/component-build-images.yml
+        with:
+          push: false
+          version: 'dev'
       # # Step 1: Checkout the code
       # - name: Checkout repository
       #   uses: actions/checkout@v3
