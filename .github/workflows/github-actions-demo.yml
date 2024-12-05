@@ -45,4 +45,4 @@ jobs:
       - name: Docker Compose Push
         run: | 
           echo $IMAGE_NAME:$DEMO_VERSION-accountingservice
-          sudo docker push $IMAGE_NAME:$DEMO_VERSION-accountingservice
+          docker push $IMAGE_NAME:$DEMO_VERSION-accountingservice
