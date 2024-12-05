@@ -5,10 +5,6 @@ on:
     branches:
       - dev  # Adjust to the branch you want to trigger the workflow
 
-
-env: 
-  DEMO_VERSION: latest-release
-
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -38,22 +34,28 @@ jobs:
 
       # Step 4: Build the images using Docker Compose
       - name: Docker Compose Build
-        run: sudo DEMO_VERSION=$DEMO_VERSION docker compose build
-        env: 
-          DEMO_VERSION: latest-release
+        run: sudo docker compose build
 
-      # Step 4: Print displayed images
+      # Step 5: Print displayed images
       - name: Docker Compose list
         run: sudo docker images -a
 
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: | 
-          IMAGES=$(docker images --format "{{.Repository}}:{{.Tag}}" | grep "^docker.io/sbhardw7")
+          IMAGES=$(docker images --format "{{.Repository}}:dev-{{.Tag}}" | grep "^docker.io/sbhardw7")
           for IMAGE in $IMAGES; do
             echo "Pushing $IMAGE..."
             docker push $IMAGE || { echo "Failed to push $IMAGE"; exit 1; }
           done
           echo "All images pushed successfully!"
-        env: 
-          DEMO_VERSION: latest-release
+
+      # Step 7: Push the Image to main 
+      - name: Docker Compose Push
+        run: | 
+          IMAGES=$(docker images --format "{{.Repository}}:main-{{.Tag}}" | grep "^docker.io/sbhardw7")
+          for IMAGE in $IMAGES; do
+            echo "Pushing $IMAGE..."
+            docker push $IMAGE || { echo "Failed to push $IMAGE"; exit 1; }
+          done
+          echo "All images pushed successfully!"
