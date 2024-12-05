@@ -11,32 +11,17 @@ env:
   MAIN_VERSION: main
 
 jobs:
+  run_checks:
+    uses: ./.github/workflows/checks.yml
+
   build-and-push:
-    # needs: run_checks
+    needs: run_checks
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Connect to EKS cluster
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2 
-
-      - name: Update kubeconfig for EKS
-        run: aws eks update-kubeconfig --name enpm818n-kubernetes-cluster --region us-east-2
-
-      # Step 4: Apply Kubernetes deployment
-      - name: Deploy to Kubernetes
-        run: kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-accountingservice_5.yaml
-
-      # Step 5: Verify deployment
-      - name: Verify Deployment
-        run: kubectl rollout status deployment/accountingservice
 
       # Step 2: Run integration tests
       # - name: run tracetesting
@@ -69,7 +54,6 @@ jobs:
       # Step 6: Push dev images using Docker Push
       - name: Docker Compose Push
         run: | 
-          echo $IMAGE_NAME:$DEV_VERSION-accountingservice
           docker push $IMAGE_NAME:$DEV_VERSION-accountingservice
           docker push $IMAGE_NAME:$DEV_VERSION-adservice
           docker push $IMAGE_NAME:$DEV_VERSION-cartservice
@@ -85,11 +69,11 @@ jobs:
           docker push $IMAGE_NAME:$DEV_VERSION-productcatalogservice
           docker push $IMAGE_NAME:$DEV_VERSION-quoteservice
           docker push $IMAGE_NAME:$DEV_VERSION-recommendationservice
+          docker push $IMAGE_NAME:$DEV_VERSION-shippingservice
 
       # Step 7: Push the main images using Docker Push
       - name: Docker Compose Push
         run: | 
-          echo $IMAGE_NAME:$MAIN_VERSION-accountingservice
           docker image tag $IMAGE_NAME:$DEV_VERSION-accountingservice $IMAGE_NAME:$MAIN_VERSION-accountingservice
           docker push $IMAGE_NAME:$MAIN_VERSION-accountingservice
           docker image tag $IMAGE_NAME:$DEV_VERSION-adservice $IMAGE_NAME:$MAIN_VERSION-adservice
@@ -120,4 +104,37 @@ jobs:
           docker push $IMAGE_NAME:$MAIN_VERSION-quoteservice
           docker image tag $IMAGE_NAME:$DEV_VERSION-recommendationservice $IMAGE_NAME:$MAIN_VERSION-recommendationservice
           docker push $IMAGE_NAME:$MAIN_VERSION-recommendationservice
+          docker image tag $IMAGE_NAME:$DEV_VERSION-shippingservice $IMAGE_NAME:$MAIN_VERSION-shippingservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-shippingservice
+
+      - name: Connect to EKS cluster
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2 
+
+      - name: Update kubeconfig for EKS
+        run: aws eks update-kubeconfig --name enpm818n-kubernetes-cluster --region us-east-2
+
+      # Step 4: Apply Kubernetes deployment
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-accountingservice_5.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-adservice_6.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-cartservice_7.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-checkoutservice_8.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-currencyservice_9.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-emailservice_10.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-frauddetectionservice_12.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-frontend_13.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-frontendproxy_14.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-imageprovider_15.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-loadgenerator_17.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-paymentservice_18.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-productcatalogservice_19.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-quoteservice_20.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-recommendationservice_21.yaml
+          kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-shippingservice_22.yaml
+
       
