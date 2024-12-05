@@ -19,6 +19,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Step 2: Run integration tests
+      - name: run tracetesting
+        run: |
+          make build && docker system prune -f && make run-tracetesting
+
       # Step 2: Log in to Docker Hub
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -42,7 +47,7 @@ jobs:
       - name: Docker Compose list
         run: sudo docker images -a
 
-      # Step 6: Push the images using Docker Compose
+      # Step 6: Push dev images using Docker Push
       - name: Docker Compose Push
         run: | 
           echo $IMAGE_NAME:$DEV_VERSION-accountingservice
@@ -61,3 +66,23 @@ jobs:
           docker push $IMAGE_NAME:$DEV_VERSION-productcatalogservice
           docker push $IMAGE_NAME:$DEV_VERSION-quoteservice
           docker push $IMAGE_NAME:$DEV_VERSION-recommendationservice
+
+      # Step 7: Push the main images using Docker Push
+      - name: Docker Compose Push
+        run: | 
+          echo $IMAGE_NAME:$MAIN_VERSION-accountingservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-accountingservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-adservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-cartservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-checkoutservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-currencyservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-emailservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-frauddetectionservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-frontend
+          docker push $IMAGE_NAME:$MAIN_VERSION-frontendproxy
+          docker push $IMAGE_NAME:$MAIN_VERSION-imageprovider
+          docker push $IMAGE_NAME:$MAIN_VERSION-loadgenerator
+          docker push $IMAGE_NAME:$MAIN_VERSION-paymentservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-productcatalogservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-quoteservice
+          docker push $IMAGE_NAME:$MAIN_VERSION-recommendationservice
