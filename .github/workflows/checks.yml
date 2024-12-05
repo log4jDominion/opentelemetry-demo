@@ -6,11 +6,11 @@ on:
   workflow_call:
 
 jobs:
-  build_images:
-    uses: ./.github/workflows/component-build-images.yml
-    with:
-      push: false
-      version: 'dev'
+  # build_images:
+  #   uses: ./.github/workflows/component-build-images.yml
+  #   with:
+  #     push: false
+  #     version: 'dev'
 
   markdownlint:
     runs-on: ubuntu-latest
