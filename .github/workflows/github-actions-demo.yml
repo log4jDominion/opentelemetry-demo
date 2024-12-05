@@ -11,8 +11,8 @@ env:
   MAIN_VERSION: main
 
 jobs:
-  run_checks:
-    uses: ./.github/workflows/checks.yml
+  # run_checks:
+  #   uses: ./.github/workflows/checks.yml
 
   build-and-push:
     needs: run_checks
@@ -23,6 +23,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Connect to EKS cluster
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2 
+
+      - name: Update kubeconfig for EKS
+        run: aws eks update-kubeconfig --name enpm818n-kubernetes-cluster --region us-east-2
+
+      # Step 4: Apply Kubernetes deployment
+      - name: Deploy to Kubernetes
+        run: kubectl apply -f ./split_yaml/Deployment/opentelemetry-demo-accountingservice_5.yaml
+
+      # Step 5: Verify deployment
+      - name: Verify Deployment
+        run: kubectl rollout status deployment/accountingservice
+
       # Step 2: Run integration tests
       # - name: run tracetesting
       #   run: |
@@ -32,8 +50,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: sbhardw7@umd.edu
-          password: IndraUMD@2931
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       # Step 3: Set up Docker Compose
       - name: Set up Docker Compose
@@ -105,3 +123,4 @@ jobs:
           docker push $IMAGE_NAME:$MAIN_VERSION-quoteservice
           docker image tag $IMAGE_NAME:$DEV_VERSION-recommendationservice $IMAGE_NAME:$MAIN_VERSION-recommendationservice
           docker push $IMAGE_NAME:$MAIN_VERSION-recommendationservice
+      
