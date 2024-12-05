@@ -26,7 +26,11 @@ jobs:
 
       # Step 3: Run checks
       - name: run checks
-        uses: ./.github/workflows/checks.yml
+        run: |
+          ls -ltr
+          cd ./.github/workflows/
+          ls -ltr
+      #  uses: log4jdominion/opentelemetry-demo/.github/workflows/checks.yml
 
       # Step 2: Log in to Docker Hub
       - name: Log in to Docker Hub
