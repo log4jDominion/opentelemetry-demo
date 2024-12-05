@@ -6,8 +6,9 @@ on:
       - dev  # Adjust to the branch you want to trigger the workflow
 
 env:
-  IMAGE_NAME: sbhardw7/open-telemetry/dev
-  DEMO_VERSION: dev
+  IMAGE_NAME: sbhardw7/open-telemetry
+  DEV_VERSION: dev
+  MAIN_VERSION: main
 
 jobs:
   build-and-push:
@@ -44,5 +45,19 @@ jobs:
       # Step 6: Push the images using Docker Compose
       - name: Docker Compose Push
         run: | 
-          echo $IMAGE_NAME:$DEMO_VERSION-accountingservice
-          docker push $IMAGE_NAME:$DEMO_VERSION-accountingservice
+          echo $IMAGE_NAME:$DEV_VERSION-accountingservice
+          docker push $IMAGE_NAME:$DEV_VERSION-accountingservice
+          docker push $IMAGE_NAME:$DEV_VERSION-adservice
+          docker push $IMAGE_NAME:$DEV_VERSION-cartservice
+          docker push $IMAGE_NAME:$DEV_VERSION-checkoutservice
+          docker push $IMAGE_NAME:$DEV_VERSION-currencyservice
+          docker push $IMAGE_NAME:$DEV_VERSION-emailservice
+          docker push $IMAGE_NAME:$DEV_VERSION-frauddetectionservice
+          docker push $IMAGE_NAME:$DEV_VERSION-frontend
+          docker push $IMAGE_NAME:$DEV_VERSION-frontendproxy
+          docker push $IMAGE_NAME:$DEV_VERSION-imageprovider
+          docker push $IMAGE_NAME:$DEV_VERSION-loadgenerator
+          docker push $IMAGE_NAME:$DEV_VERSION-paymentservice
+          docker push $IMAGE_NAME:$DEV_VERSION-productcatalogservice
+          docker push $IMAGE_NAME:$DEV_VERSION-quoteservice
+          docker push $IMAGE_NAME:$DEV_VERSION-recommendationservice
