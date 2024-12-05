@@ -1,0 +1,15 @@
+name: End-End Code Deployment pipeline
+
+on:
+  push:
+    branches:
+      - dev  # Adjust to the branch you want to trigger the workflow
+
+jobs:
+  build_images:
+    uses: ./.github/workflows/component-build-images.yml
+    with:
+      push: true
+      version: 'dev'
+
+  

@@ -3,7 +3,7 @@ name: Docker Compose Build and Push
 on:
   push:
     branches:
-      - dev  # Adjust to the branch you want to trigger the workflow
+      - main  # Adjust to the branch you want to trigger the workflow
 
 env:
   IMAGE_NAME: sbhardw7/open-telemetry
