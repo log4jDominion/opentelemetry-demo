@@ -25,6 +25,6 @@ jobs:
     secrets: inherit
   kubenetes_deployment:
     uses: ./.github/workflows/kubernetes-deployment.yml
-    needs: integration_checks
+    needs: integration_tests
     secrets: inherit
   
