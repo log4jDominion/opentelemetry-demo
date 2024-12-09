@@ -23,7 +23,7 @@ jobs:
           aws-region: us-east-2 
 
       - name: Update kubeconfig for EKS
-        run: aws eks update-kubeconfig --name floral-pop-sculpture --region us-east-2
+        run: aws eks update-kubeconfig --name enpm818n-eks-cluster --region us-east-2
       
       - name: K8s apply ${{ matrix.step }}
         run: |
@@ -51,7 +51,7 @@ jobs:
           aws-region: us-east-2 
 
       - name: Update kubeconfig for EKS
-        run: aws eks update-kubeconfig --name floral-pop-sculpture --region us-east-2
+        run: aws eks update-kubeconfig --name enpm818n-eks-cluster --region us-east-2
 
       - name: Rollback deployment $${{ matrix.step }}
         run: kubectl rollout undo deployment/${{ matrix.step }}
