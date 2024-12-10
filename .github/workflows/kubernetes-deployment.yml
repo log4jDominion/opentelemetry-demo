@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        step: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
+        step: [accountingservice_wrong_name,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
   # Need to check on flagdui
 
     steps:
@@ -35,7 +35,7 @@ jobs:
     if: failure()
     strategy:
       matrix:
-        step: [accountingservice_wrong_name,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
+        step: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
   # Need to check on flagdui
 
     
