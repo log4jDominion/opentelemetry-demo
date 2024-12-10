@@ -35,7 +35,7 @@ jobs:
     if: failure()
     strategy:
       matrix:
-        step: [accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
+        step: [opentelemetry-demo-accountingservice,adservice,cartservice,checkoutservice,currencyservice,emailservice,frauddetectionservice,frontend,frontendproxy,imageprovider,kafka,loadgenerator,paymentservice,productcatalogservice,quoteservice,recommendationservice,shippingservice]
   # Need to check on flagdui
 
     
